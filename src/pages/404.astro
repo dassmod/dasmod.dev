@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Link from '../components/Link.astro';
+---
+<Base title="Not found">
+  <article class="page">
+    <PageHead num="404" title="Nothing here" intro="This page does not exist, or it moved. The menu has everything that does." />
+    <div class="links"><Link href="/" action>Go home</Link><Link href="/writing/">Writing</Link></div>
+  </article>
+</Base>

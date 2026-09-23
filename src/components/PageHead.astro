@@ -1,0 +1,9 @@
+---
+const { num, title, intro } = Astro.props;
+---
+<header>
+  <div class="num"><span class="chip">({num})</span></div>
+  <h1 class="page-title">{title}</h1>
+  {intro && <p class="lede">{intro}</p>}
+  <slot />
+</header>

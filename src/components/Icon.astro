@@ -1,0 +1,34 @@
+---
+// Line icons drawn on a 16px grid, stroked in the current text colour.
+const { kind, size = 16 } = Astro.props;
+const rays = [[1, 0], [-1, 0], [0, 1], [0, -1], [.707, .707], [-.707, .707], [.707, -.707], [-.707, -.707]];
+---
+<svg class="icon" width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor"
+  stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {kind === 'sun' && (
+    <>
+      <circle cx="8" cy="8" r="2.6" />
+      {rays.map(([c, d]) => <line x1={8 + 5.2 * c} y1={8 + 5.2 * d} x2={8 + 6.9 * c} y2={8 + 6.9 * d} />)}
+    </>
+  )}
+  {kind === 'moon' && <path d="M11.8 10.2A5.2 5.2 0 0 1 5.8 4.2a5.2 5.2 0 1 0 6 6z" />}
+  {kind === 'menu' && (
+    <>
+      <line x1="2.5" y1="4.5" x2="13.5" y2="4.5" />
+      <line x1="2.5" y1="8" x2="13.5" y2="8" />
+      <line x1="2.5" y1="11.5" x2="13.5" y2="11.5" />
+    </>
+  )}
+  {kind === 'close' && (
+    <>
+      <line x1="3.5" y1="3.5" x2="12.5" y2="12.5" />
+      <line x1="12.5" y1="3.5" x2="3.5" y2="12.5" />
+    </>
+  )}
+  {kind === 'arrow' && (
+    <>
+      <line x1="4.5" y1="11.5" x2="11.5" y2="4.5" />
+      <polyline points="5.5,4.5 11.5,4.5 11.5,10.5" />
+    </>
+  )}
+</svg>

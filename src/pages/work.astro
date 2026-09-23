@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Touch from '../components/Touch.astro';
+import Link from '../components/Link.astro';
+import Icon from '../components/Icon.astro';
+import { WORK, LINKS } from '../data/site.js';
+---
+<Base title="Work" current="work">
+  <article class="page">
+    <PageHead num="03" title="Work" intro="Four teams, and the same thread through all of them: I ship things that have to hold up in front of real people. LinkedIn has the complete record.">
+      <div class="links" style="margin-top:16px;"><Link href={LINKS.linkedin}>LinkedIn</Link></div>
+    </PageHead>
+
+    <div style="margin-top:24px;">
+      {WORK.map((job) => {
+        const [before, after] = job.dates.split('current');
+        return (
+          <div class="job">
+            <div class="job-head">
+              {job.href
+                ? <a class="row-title" href={job.href} target="_blank" rel="noopener">{job.live && <span class="sq"></span>}<span class="t">{job.company}</span><Icon kind="arrow" size={13} /></a>
+                : <span class="row-title">{job.live && <span class="sq"></span>}{job.company}</span>}
+              <span class="row-date">{after === undefined ? job.dates : <>{before}<span class="hl">current</span>{after}</>}</span>
+            </div>
+            <div class="job-body">
+              <div class="job-role">{job.roles.join(' ')}</div>
+              <div class="job-text">{job.text.map((p) => <p>{p}</p>)}</div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <Touch />
+  </article>
+</Base>

@@ -1,0 +1,438 @@
+{
+  "fetchedAt": "2026-09-17T11:51:58.521Z",
+  "sources": {
+    "episodes": "live",
+    "issues": "live",
+    "commits": "live"
+  },
+  "episodes": [
+    {
+      "title": "Counterfactual Verification",
+      "subtitle": "Would the Discovery Have Happened Anyway",
+      "date": "2026-09-16",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-counterfactual-verification-would-the/id6783455764?i=1000790089090",
+      "excerpt": "An AI research agent runs for days and comes back with a database query that is genuinely faster than the best published one, and every instrument this field owns for checking that work, re-running it yourself, leaving a window…",
+      "longread": "https://buttondown.com/plainstrata/archive/a-ruler-cannot-take-a-temperature/"
+    },
+    {
+      "title": "Compute as Collateral",
+      "subtitle": "Borrowing Against the Machines That Run Open AI",
+      "date": "2026-09-02",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-compute-as-collateral-borrowing-against/id6783455764?i=1000787443711",
+      "excerpt": "Running one of the big open AI models is not really a licensing question, it is a question of how many datacentre graphics cards you can put in one building at once, each costing about as much as a car, and somebody has to buy…",
+      "longread": "https://buttondown.com/plainstrata/archive/the-receipt-is-the-asset/"
+    },
+    {
+      "title": "Hardware Attestation",
+      "subtitle": "Checking the Room Instead of the Answer",
+      "date": "2026-09-01",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-hardware-attestation-checking-the-room/id6783455764?i=1000787227281",
+      "excerpt": "Your prompt has to be readable at the exact moment a model works on it, which means it sits in plain form in the working memory of a machine somebody else owns, and encrypting the disk and encrypting the wire do nothing about…",
+      "longread": "https://buttondown.com/plainstrata/archive/fire-the-landlord-hire-a-factory/"
+    },
+    {
+      "title": "The Easy Half",
+      "subtitle": "A Network Wants Miners to Run AI and Checking That Work Is the Hard Part",
+      "date": "2026-08-25",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-easy-half-a-network-wants-miners/id6783455764?i=1000786613386",
+      "excerpt": "A Bitcoin miner picks a random number, runs it through a fixed scrambler, sees the result is not small enough and picks another, a few hundred trillion times since you started reading this sentence, and for seventeen years the…"
+    },
+    {
+      "title": "The Entry Fee",
+      "subtitle": "To Prove an AI Answer You Have to Round the Model Off First",
+      "date": "2026-08-20",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-entry-fee-to-prove-an-ai-answer/id6783455764?i=1000784639082",
+      "excerpt": "Every way of checking an AI answer that anyone actually runs today works on somebody having money to lose: an operator posts a deposit and forfeits it if caught, or a paid crowd of watchers goes looking for lies, which is…",
+      "longread": "https://buttondown.com/plainstrata/archive/a-chef-who-may-only-measure-in-whole-grams/"
+    },
+    {
+      "title": "Somebody Has to Sign",
+      "subtitle": "Open AI Models Now Come With a Revenue Line",
+      "date": "2026-08-18",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-somebody-has-to-sign-open-ai-models-now/id6783455764?i=1000784156917",
+      "excerpt": "An AI model is a very large pile of numbers in a file, so for three years the only thing standing between anyone and the best open ones was physical: the memory to hold them and the machines to run them.",
+      "longread": "https://buttondown.com/plainstrata/archive/free-to-download-not-free-to-sell/"
+    },
+    {
+      "title": "The Wiring Between Them",
+      "subtitle": "",
+      "date": "2026-08-13",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-wiring-between-them/id6783455764?i=1000783186254",
+      "excerpt": "A thermostat is provably sound and a space heater is a dumb coil of wire, and if you set the heater on the shelf directly under the thermostat the room goes cold while the system reports success, because the instrument that was…",
+      "longread": "https://buttondown.com/plainstrata/archive/the-danger-is-the-wiring/"
+    },
+    {
+      "title": "Nobody to Trust",
+      "subtitle": "",
+      "date": "2026-08-11",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-nobody-to-trust/id6783455764?i=1000782706695",
+      "excerpt": "A model cannot think about a message it cannot read, so for the second or two your question is being answered it sits decrypted in the working memory of a machine you will never see, which is why every privacy promise in AI today…",
+      "longread": "https://buttondown.com/plainstrata/archive/the-price-of-privacy/"
+    },
+    {
+      "title": "Nobody Checks the Answer",
+      "subtitle": "",
+      "date": "2026-08-06",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-nobody-checks-the-answer/id6783455764?i=1000780288838",
+      "excerpt": "An answer from an AI is text, and text carries no receipt, so the machine that produced yours could have run a model a tenth of the size, handed back something plausible, and pocketed the difference in electricity without leaving…",
+      "longread": "https://buttondown.com/plainstrata/archive/nobody-checks-the-answer/"
+    },
+    {
+      "title": "The Gate Was Never the License",
+      "subtitle": "",
+      "date": "2026-08-04",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-gate-was-never-the-license/id6783455764?i=1000779926226",
+      "excerpt": "In 1960 the journalist A. J. Liebling wrote that freedom of the press is guaranteed only to those who own one. The right to print was universal. The press was not.",
+      "longread": "https://buttondown.com/plainstrata/archive/the-gate-was-never-the-license/"
+    },
+    {
+      "title": "Say Yes Once",
+      "subtitle": "",
+      "date": "2026-07-30",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-say-yes-once/id6783455764?i=1000779148763",
+      "excerpt": "Four questions stand between a piece of software and your money. Who is this. How has it behaved. Did it do the work correctly. And the one almost nobody built for: was it ever allowed to try at all.",
+      "longread": "https://buttondown.com/plainstrata/archive/the-yes-that-has-to-survive-three-days-alone/"
+    },
+    {
+      "title": "No Handshake Required",
+      "subtitle": "",
+      "date": "2026-07-28",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-no-handshake-required/id6783455764?i=1000778745314",
+      "excerpt": "This week's story in decentralized AI is not a launch. It is a deletion. On July 28, a specification called MCP, the wiring that lets an AI model reach outside its own head to open a file or run a search, deleted the session: no…",
+      "longread": "https://buttondown.com/plainstrata/archive/what-happens-when-the-plumbing-stops-remembering/"
+    },
+    {
+      "title": "The Name That Stays",
+      "subtitle": "",
+      "date": "2026-07-23",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-name-that-stays/id6783455764?i=1000778073605",
+      "excerpt": "A software agent can be copied, forked, upgraded, or run as a thousand identical instances at once. None of them remembers the last job.",
+      "longread": "https://buttondown.com/plainstrata/archive/how-software-carries-a-reputation-without-having/"
+    },
+    {
+      "title": "A Name and a Wallet",
+      "subtitle": "",
+      "date": "2026-07-21",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-a-name-and-a-wallet/id6783455764?i=1000777751770",
+      "excerpt": "This week, software agents got the two things they need to do business on their own: a way to pay, and a name that means something. Both arrived at real scale, backed by real institutions, in the same handful of days.",
+      "longread": "https://buttondown.com/plainstrata/archive/the-agent-economy-has-a-wallet-it-still-doesnt/"
+    },
+    {
+      "title": "The Scorekeeper",
+      "subtitle": "",
+      "date": "2026-07-16",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-scorekeeper/id6783455764?i=1000777105940",
+      "excerpt": "The Thursday Layer. A training company called Prime Intellect just raised 130 million dollars, at a valuation near a billion, to sell something far less glamorous than a faster computer: a trustworthy way to tell an AI agent…",
+      "longread": "https://buttondown.com/plainstrata/archive/a-better-scorekeeper-beats-a-bigger-computer/"
+    },
+    {
+      "title": "Train Your Own",
+      "subtitle": "",
+      "date": "2026-07-14",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-train-your-own/id6783455764?i=1000776787005",
+      "excerpt": "The Tuesday Pulse. On July 8, the US government cleared GPT-5.6 for broad public sale after two weeks behind a case-by-case approval gate, twenty companies, each individually cleared.",
+      "longread": "https://buttondown.com/plainstrata/archive/rent-the-frontier-or-train-your-own/"
+    },
+    {
+      "title": "The Third Rail",
+      "subtitle": "",
+      "date": "2026-07-07",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-third-rail/id6783455764?i=1000775838002",
+      "excerpt": "The Tuesday Pulse. For twenty-nine years, the web reserved a status code for payments, number 402, \"Payment Required,\" and never once used it. This year two rival teams moved into that empty room two weeks apart.",
+      "longread": "https://buttondown.com/plainstrata/archive/the-webs-empty-payment-slot-just-filled-twice/"
+    },
+    {
+      "title": "Why the Frontier Stays in One Room",
+      "subtitle": "",
+      "date": "2026-07-02",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-why-the-frontier-stays-in-one-room/id6783455764?i=1000775197926",
+      "excerpt": "The Thursday Layer. In late 2025, the team with the best claim to dislike centralized AI did the centralized thing: Prime Intellect, whose whole identity is training models scattered across homes and offices on different…",
+      "longread": "https://buttondown.com/plainstrata/archive/the-ratio-that-keeps-the-biggest-ai-in-one-room/"
+    },
+    {
+      "title": "The Permission Slip",
+      "subtitle": "",
+      "date": "2026-06-30",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-the-permission-slip/id6783455764?i=1000774874146",
+      "excerpt": "The Tuesday Pulse. On Friday, the most powerful AI available to the public shipped, and to use the most capable version you first needed approval from the US government: around twenty companies, cleared case by case by the White…",
+      "longread": "https://buttondown.com/plainstrata/archive/the-most-powerful-ai-now-needs-a-permission-slip/"
+    },
+    {
+      "title": "When a Network Sells Itself",
+      "subtitle": "",
+      "date": "2026-06-25",
+      "url": "https://podcasts.apple.com/us/podcast/when-a-network-sells-itself/id6783455764?i=1000774557056",
+      "excerpt": "The Thursday Layer. On a decentralized AI network, the safest yield is paid by a machine that, every twelve seconds, sells off slivers of the very tokens the network is built on.",
+      "longread": "https://buttondown.com/plainstrata/archive/the-network-that-sells-itself-every-twelve-seconds/"
+    },
+    {
+      "title": "The Off-Switch",
+      "subtitle": "",
+      "date": "2026-06-23",
+      "url": "https://podcasts.apple.com/us/podcast/the-off-switch/id6783455764?i=1000774556658",
+      "excerpt": "The first episode of Plain Strata. This June, the most capable AI ever opened to the public went dark for the whole world, three days after launch, because of one letter.",
+      "longread": "https://buttondown.com/plainstrata/archive/one-letter-took-the-best-ai-offline/"
+    },
+    {
+      "title": "Plain Strata B8: Who Decides?",
+      "subtitle": "",
+      "date": "2026-06-16",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b8-who-decides/id6783455764?i=1000779690831",
+      "excerpt": "Across this series we have watched decentralized AI networks do remarkable things with no company in charge. Serve answers. Verify work nobody watched. Pay strangers. Run software that acts on its own."
+    },
+    {
+      "title": "Plain Strata B7: Agents With Wallets",
+      "subtitle": "",
+      "date": "2026-06-09",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b7-agents-with-wallets/id6783455764?i=1000779693233",
+      "excerpt": "Most software waits to be told what to do. You click, it responds. An agent is different: software that acts on its own, in a loop, pursuing a goal without a human pressing the button each time."
+    },
+    {
+      "title": "Plain Strata B6: Airbnb for GPUs",
+      "subtitle": "",
+      "date": "2026-06-02",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b6-airbnb-for-gpus/id6783455764?i=1000779693260",
+      "excerpt": "Training and running AI needs one specific, expensive ingredient: graphics processing units, the chips that do the enormous parallel arithmetic neural networks demand."
+    },
+    {
+      "title": "Plain Strata B5: Harder to Build Than to Use",
+      "subtitle": "",
+      "date": "2026-05-26",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b5-harder-to-build-than-to-use/id6783455764?i=1000779690150",
+      "excerpt": "One question splits this whole field in two: are you using an AI model, or building one? Using a finished model to answer a question is called inference, and decentralizing it is hard but solved, running in production today."
+    },
+    {
+      "title": "Plain Strata B4: The Oracle Pattern",
+      "subtitle": "",
+      "date": "2026-05-19",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b4-the-oracle-pattern/id6783455764?i=1000779691310",
+      "excerpt": "A blockchain is a strange kind of computer. It is extraordinarily good at agreeing on a shared record nobody can secretly alter, and almost comically bad at knowing anything about the world outside itself."
+    },
+    {
+      "title": "Plain Strata B3: Skin in the Game",
+      "subtitle": "",
+      "date": "2026-05-12",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b3-skin-in-the-game/id6783455764?i=1000779692897",
+      "excerpt": "A landlord hands an apartment key to a tenant they have never met. The tenant could trash the place, skip town, and never pay for the damage. What stops them? Not the landlord's trust, and not the tenant's good character."
+    },
+    {
+      "title": "Plain Strata B2: Three Ways to Trust an Answer",
+      "subtitle": "",
+      "date": "2026-05-05",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b2-three-ways-to-trust-an-answer/id6783455764?i=1000779683855",
+      "excerpt": "You send a hard math problem to a stranger on the internet and pay them to solve it. A minute later they send back an answer. How do you know they actually solved it? Maybe they ran the real calculation. Maybe they guessed."
+    },
+    {
+      "title": "Plain Strata B1: One Question",
+      "subtitle": "End to End",
+      "date": "2026-04-28",
+      "url": "https://podcasts.apple.com/us/podcast/plain-strata-b1-one-question-end-to-end/id6783455764?i=1000779683854",
+      "excerpt": "Somewhere in Singapore, a computer with a powerful graphics card sits in a rack, fans spinning, waiting. Somewhere in Frankfurt, a different machine waits, this one with no fancy card but a very fast connection."
+    }
+  ],
+  "issues": [
+    {
+      "title": "A ruler cannot take a temperature",
+      "url": "https://buttondown.com/plainstrata/archive/a-ruler-cannot-take-a-temperature/",
+      "date": "2026-09-16"
+    },
+    {
+      "title": "The receipt is the asset",
+      "url": "https://buttondown.com/plainstrata/archive/the-receipt-is-the-asset/",
+      "date": "2026-09-02"
+    },
+    {
+      "title": "Fire the landlord, hire a factory",
+      "url": "https://buttondown.com/plainstrata/archive/fire-the-landlord-hire-a-factory/",
+      "date": "2026-09-01"
+    },
+    {
+      "title": "The jigsaw puzzle a stranger can check in one second",
+      "url": "https://buttondown.com/plainstrata/archive/the-jigsaw-puzzle-a-stranger-can-check-in-one/",
+      "date": "2026-08-29"
+    },
+    {
+      "title": "A chef who may only measure in whole grams",
+      "url": "https://buttondown.com/plainstrata/archive/a-chef-who-may-only-measure-in-whole-grams/",
+      "date": "2026-08-20"
+    },
+    {
+      "title": "Free to download, not free to sell",
+      "url": "https://buttondown.com/plainstrata/archive/free-to-download-not-free-to-sell/",
+      "date": "2026-08-19"
+    },
+    {
+      "title": "The danger is the wiring",
+      "url": "https://buttondown.com/plainstrata/archive/the-danger-is-the-wiring/",
+      "date": "2026-08-13"
+    },
+    {
+      "title": "The price of privacy",
+      "url": "https://buttondown.com/plainstrata/archive/the-price-of-privacy/",
+      "date": "2026-08-11"
+    },
+    {
+      "title": "Nobody checks the answer",
+      "url": "https://buttondown.com/plainstrata/archive/nobody-checks-the-answer/",
+      "date": "2026-08-06"
+    },
+    {
+      "title": "The gate was never the license",
+      "url": "https://buttondown.com/plainstrata/archive/the-gate-was-never-the-license/",
+      "date": "2026-08-04"
+    },
+    {
+      "title": "The yes that has to survive three days alone",
+      "url": "https://buttondown.com/plainstrata/archive/the-yes-that-has-to-survive-three-days-alone/",
+      "date": "2026-07-30"
+    },
+    {
+      "title": "What happens when the plumbing stops remembering you",
+      "url": "https://buttondown.com/plainstrata/archive/what-happens-when-the-plumbing-stops-remembering/",
+      "date": "2026-07-28"
+    },
+    {
+      "title": "How software carries a reputation without having a self",
+      "url": "https://buttondown.com/plainstrata/archive/how-software-carries-a-reputation-without-having/",
+      "date": "2026-07-23"
+    },
+    {
+      "title": "The agent economy has a wallet. It still doesn't have a name.",
+      "url": "https://buttondown.com/plainstrata/archive/the-agent-economy-has-a-wallet-it-still-doesnt/",
+      "date": "2026-07-21"
+    },
+    {
+      "title": "A better scorekeeper beats a bigger computer",
+      "url": "https://buttondown.com/plainstrata/archive/a-better-scorekeeper-beats-a-bigger-computer/",
+      "date": "2026-07-16"
+    },
+    {
+      "title": "Rent the frontier, or train your own",
+      "url": "https://buttondown.com/plainstrata/archive/rent-the-frontier-or-train-your-own/",
+      "date": "2026-07-14"
+    },
+    {
+      "title": "The web's empty payment slot just filled, twice",
+      "url": "https://buttondown.com/plainstrata/archive/the-webs-empty-payment-slot-just-filled-twice/",
+      "date": "2026-07-07"
+    },
+    {
+      "title": "The ratio that keeps the biggest AI in one room",
+      "url": "https://buttondown.com/plainstrata/archive/the-ratio-that-keeps-the-biggest-ai-in-one-room/",
+      "date": "2026-07-02"
+    },
+    {
+      "title": "The most powerful AI now needs a permission slip",
+      "url": "https://buttondown.com/plainstrata/archive/the-most-powerful-ai-now-needs-a-permission-slip/",
+      "date": "2026-06-30"
+    },
+    {
+      "title": "The network that sells itself every twelve seconds",
+      "url": "https://buttondown.com/plainstrata/archive/the-network-that-sells-itself-every-twelve-seconds/",
+      "date": "2026-06-25"
+    },
+    {
+      "title": "One letter took the best AI offline",
+      "url": "https://buttondown.com/plainstrata/archive/one-letter-took-the-best-ai-offline/",
+      "date": "2026-06-23"
+    }
+  ],
+  "commits": [
+    {
+      "repo": "proof-of-agent-run",
+      "message": "docs: worklog for the limit-versus-defect session",
+      "date": "2026-08-28",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/95fc30f2f888122460ae6d657e8e675981933323"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "docs: readme",
+      "date": "2026-08-28",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/62e80971836eaaf922b015ef7cac3797a00f8776"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "test: BAD_TYPE_RUN demonstrates the guard-body crash erasing the whole report",
+      "date": "2026-08-28",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/b93c0f171b9a9e7b397eb94f3ed89380757f73b7"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "fix: lift the signature call out of the narrow try so a broken GUARDS entry crashes",
+      "date": "2026-08-28",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/c161238f0c47a3a0aad7a5612d7c9737bf2aa0f2"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "docs: worklog for the bind-compares-names session",
+      "date": "2026-08-26",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/d4da54f1db3ae8d59bb965e0d2e62ba178bce1eb"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "docs: clause 3 names the crash-is-not-a-verdict rule the engine breaks",
+      "date": "2026-08-26",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/f6e3777d1b19bbcbb98d8b91fd8411daad76e66e"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "docs: worklog, guard-body TypeError escapes replay_trace and erases every verdict",
+      "date": "2026-08-24",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/44dcf3af286d01bafa5bfd0f3953f42d1b299496"
+    },
+    {
+      "repo": "proof-of-agent-run",
+      "message": "docs: worklog for the signature_mismatch session",
+      "date": "2026-08-23",
+      "url": "https://github.com/dassmod/proof-of-agent-run/commit/bec04d787bb3c8d40f8da0ed1858b35ce82c1411"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "feat(cards): parse lesson retrieval prompts into content-addressed cards",
+      "date": "2026-08-11",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/4f5dde11efa926ea31901b7d497449f02d228b83"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "fix(scheduler): load lessons from the flat Fields vault path",
+      "date": "2026-08-10",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/fc37a3fece3111da0df258712b493233564a49e8"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "docs: add Strata spec and worklog",
+      "date": "2026-08-09",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/3eea72ff3185a61da96a2d843ed01b2622956ee9"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "feat: EIP-712 attested proof of knowledge",
+      "date": "2026-08-06",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/038fdc6098909478499a02065da7fc9dfb2a01d3"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "fix(blockchain): treat a reverted proof submission as a failure",
+      "date": "2026-08-06",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/7a31afc45ccc7e01a79a38a0754a9321e22cb473"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "chore: gitignore plaintext .env backups",
+      "date": "2026-08-06",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/ff496078b7853da423f546cc1ce9bd9f43f77d8e"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "docs: record the deployed Sepolia address",
+      "date": "2026-08-06",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/fc471b743746c72800b5677e5ce0163419e59678"
+    },
+    {
+      "repo": "smart-repetition-agent",
+      "message": "docs: describe the EIP-712 attestation design and contract tests",
+      "date": "2026-08-06",
+      "url": "https://github.com/dassmod/smart-repetition-agent/commit/e74ee3427f5ac789e80516f5544cd1f614f0f90e"
+    }
+  ]
+}

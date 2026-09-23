@@ -1,0 +1,183 @@
+---
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import Link from '../components/Link.astro';
+import { LINKS, DESCRIPTION } from '../data/site.js';
+import { hasNewEpisode, today } from '../lib/live.js';
+
+const { title, description = DESCRIPTION, current, home = false } = Astro.props;
+const fullTitle = title ? `${title} | Dastan Modubash` : 'Dastan Modubash';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const PAGES = [
+  ['01', 'Home', '/', 'home'],
+  ['02', 'About me', '/about/', 'about'],
+  ['03', 'Work', '/work/', 'work'],
+  ['04', 'Building', '/building/', 'building'],
+  ['05', 'Writing', '/writing/', 'writing'],
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#F0EBE3" />
+  <script is:inline>
+    (function () {
+      var root = document.documentElement;
+      var saved = null, neon = null;
+      try { saved = localStorage.getItem('theme'); neon = localStorage.getItem('neon'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'dark' : 'light';
+
+      // Two neon levels. "some" is the default. "more" carries the neon into
+      // hovers, transitions and section marks. Switch with ?neon=more or ?neon=some.
+      var asked = new URLSearchParams(location.search).get('neon');
+      if (asked === 'more' || asked === 'some') {
+        neon = asked;
+        try { localStorage.setItem('neon', neon); } catch (e) {}
+      }
+      root.dataset.neon = neon === 'more' ? 'more' : 'some';
+    })();
+  </script>
+</head>
+<body class:list={{ 'home-page': home }}>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Two grounds, so a change of mode is a cross-fade and not a jump. -->
+  <div class="ground" aria-hidden="true"><span class="ground-light"></span><span class="ground-dark"></span></div>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="flash" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Dastan Modubash, home">Dastan Modubash<span class="dot">.</span></a>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-label="Switch colour mode">
+        <span class="show-light"><Icon kind="sun" /></span>
+        <span class="show-dark"><Icon kind="moon" /></span>
+        <span class="btn-text" data-theme-name>Light</span>
+      </button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="open-label"><Icon kind="menu" /><span class="btn-text">Menu</span></span>
+        <span class="close-label"><Icon kind="close" /><span class="btn-text">Close</span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <span class="menu-sweep" aria-hidden="true"></span>
+    <div class="menu-inner">
+      <nav aria-label="Pages">
+        <ul class="menu-nav">
+          {PAGES.map(([n, name, href, key]) => (
+            <li>
+              <div class="num">({n})</div>
+              <a class="menu-title" href={href} aria-current={key === current ? 'page' : undefined}>
+                <span class="menu-word">{key === current ? <span class="hl">{name}</span> : name}</span>
+                {key === 'writing' && hasNewEpisode && <span class="menu-new"><span class="sq"></span>new episode</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="menu-contact">
+        <div class="num">(Contact)</div>
+        <div class="menu-title">Get in touch</div>
+        <p>Work, an idea, or a correction to something I said on the show. This is where to find me, and I reply.</p>
+        <div class="links">
+          <Link href={LINKS.email} action>Email</Link>
+          <Link href={LINKS.github}>GitHub</Link>
+          <Link href={LINKS.linkedin}>LinkedIn</Link>
+          <Link href={LINKS.x}>X</Link>
+        </div>
+      </div>
+    </div>
+    <div class="menu-meta">
+      <div class="num">(Last updated)</div>
+      <div class="meta-value">{today}</div>
+    </div>
+  </div>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <style is:global>
+    :root[data-theme="dark"] .show-light, :root:not([data-theme="dark"]) .show-dark { display: none; }
+    .show-light, .show-dark { display: inline-flex; }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var root = document.documentElement;
+      var body = document.body;
+      var themeMeta = document.querySelector('meta[name="theme-color"]');
+      var nameEl = document.querySelector('[data-theme-name]');
+      var themeBtn = document.querySelector('.theme-toggle');
+      var menuBtn = document.querySelector('.menu-toggle');
+      var menu = document.getElementById('menu');
+
+      function paintTheme() {
+        var dark = root.dataset.theme === 'dark';
+        nameEl.textContent = dark ? 'Dark' : 'Light';
+        themeBtn.setAttribute('aria-label', dark ? 'Dark mode. Switch to light mode' : 'Light mode. Switch to dark mode');
+        themeMeta.setAttribute('content', dark ? '#2E3345' : '#F0EBE3');
+      }
+      paintTheme();
+
+      var flash = document.querySelector('.flash');
+      var themingTimer;
+      themeBtn.addEventListener('click', function () {
+        // `theming` lets every colour cross-fade for the length of the change only,
+        // so hover feedback stays instant the rest of the time.
+        root.classList.add('theming');
+        clearTimeout(themingTimer);
+        themingTimer = setTimeout(function () { root.classList.remove('theming'); }, 520);
+        flash.classList.remove('is-on');
+        void flash.offsetWidth;
+        flash.classList.add('is-on');
+
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+        paintTheme();
+      });
+
+      function setMenu(open) {
+        body.classList.toggle('menu-open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        if (open) {
+          var first = menu.querySelector('a');
+          if (first) first.focus({ preventScroll: true });
+        } else {
+          menuBtn.focus({ preventScroll: true });
+        }
+      }
+      menuBtn.addEventListener('click', function () { setMenu(!body.classList.contains('menu-open')); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && body.classList.contains('menu-open')) setMenu(false);
+      });
+
+      var bar = document.querySelector('.progress');
+      function onScroll() {
+        body.classList.toggle('scrolled', window.scrollY > 8);
+        var span = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (span > 0 ? Math.min(1, window.scrollY / span) : 0) + ')';
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Touch from '../../components/Touch.astro';
+import Link from '../../components/Link.astro';
+import { posts } from '../../lib/posts.js';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+---
+<Base title={post.title} description={post.excerpt} current="writing">
+  <article class="page">
+    <div class="back"><Link href="/writing/">All writing</Link></div>
+    <div class="num"><span class="chip">(Post)</span></div>
+    <h1 class="page-title">{post.title}</h1>
+    <div class="post-date">{post.date}</div>
+    <div class="prose"><Content /></div>
+    <Touch />
+  </article>
+</Base>

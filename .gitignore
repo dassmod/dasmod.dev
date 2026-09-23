@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# Design exploration: large mockups and canvas sources. Kept on disk, out of the site repo.
+design/
+concepts/

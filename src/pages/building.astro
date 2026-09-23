@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Touch from '../components/Touch.astro';
+import Icon from '../components/Icon.astro';
+import { PROJECTS, LEARNING, STACK } from '../data/site.js';
+import { commits } from '../lib/live.js';
+
+const recent = commits.slice(0, 6);
+---
+<Base title="Building" current="building">
+  <article class="page">
+    <PageHead num="04" title="Building" intro="What I am making, what I am learning in order to make it, and the tools I make it with." />
+
+    <section class="section">
+      <h2>Projects</h2>
+      <p class="lede">Two public repositories you can run, and one system I keep private.</p>
+      <div class="rows">
+        {PROJECTS.map((p) => (
+          <div class="row">
+            <div class="row-head">
+              {p.href
+                ? <a class="row-title" href={p.href} target="_blank" rel="noopener">{p.live && <span class="sq"></span>}<span class="t">{p.title}</span><Icon kind="arrow" size={13} /></a>
+                : <span class="row-title">{p.title}</span>}
+              <span class="row-date">{p.status}</span>
+            </div>
+            <p class="row-text">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {recent.length > 0 && (
+      <section class="section">
+        <h2>Latest commits</h2>
+        <p class="lede">Pulled from GitHub every few hours, so this list moves when the work moves.</p>
+        <ul class="commits">
+          {recent.map((c) => (
+            <li class="commit">
+              <span class="commit-date">{c.date}</span>
+              <span class="commit-repo">{c.repo}</span>
+              <a href={c.url} target="_blank" rel="noopener"><span class="t">{c.message}</span><Icon kind="arrow" size={12} /></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="section">
+      <h2>What I am learning <span class="hl">right now</span></h2>
+      <p class="lede">The ground under the build. One concept at a time, and each one ends up in an episode.</p>
+      <div class="grid">
+        {LEARNING.map(([title, text]) => (
+          <div><div class="item-title">{title}</div><p class="item-text">{text}</p></div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Stack</h2>
+      <p class="lede">What I reach for when an agent has to work for real.</p>
+      <div class="grid">
+        {STACK.map(([title, href, text]) => (
+          <div>
+            <a class="item-title" href={href} target="_blank" rel="noopener"><span class="t">{title}</span><Icon kind="arrow" size={13} /></a>
+            <p class="item-text">{text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Touch />
+  </article>
+</Base>

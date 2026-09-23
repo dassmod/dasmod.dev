@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Touch from '../../components/Touch.astro';
+import Link from '../../components/Link.astro';
+import Icon from '../../components/Icon.astro';
+import { LINKS, SHOW_POSTS } from '../../data/site.js';
+import { episodes } from '../../lib/live.js';
+import { posts } from '../../lib/posts.js';
+
+const shown = episodes.slice(0, 8);
+---
+<Base title="Writing" current="writing">
+  <article class="page">
+    <PageHead num="05" title="Writing" intro="Everything I publish. A show about decentralized AI twice a week, and the long-read that goes with every episode." />
+
+    <section class="section">
+      <h2>Plain Strata</h2>
+      <p class="lede">Decentralized AI, layer by layer, for people who are curious and allergic to hype. A pulse and a layer every week, each with a long-read behind it.</p>
+      <div class="links" style="margin-top:16px;">
+        <Link href={LINKS.newsletter}>Read the newsletter</Link>
+        <Link href={LINKS.apple} action>Listen on Apple Podcasts</Link>
+      </div>
+
+      <div class="rows" style="margin-top:30px;">
+        {shown.map((ep, i) => (
+          <div class="row">
+            <div class="row-head">
+              <a class="row-title" href={ep.longread || ep.url} target="_blank" rel="noopener">
+                {i === 0 && <span class="sq"></span>}<span class="t">{ep.title}</span><Icon kind="arrow" size={13} />
+              </a>
+              <span class="row-date">{ep.date}</span>
+            </div>
+            <p class="row-text">{ep.excerpt}</p>
+            <div class="row-extra"><Link href={ep.url}>Listen on Apple Podcasts</Link></div>
+          </div>
+        ))}
+      </div>
+      {episodes.length > shown.length && (
+        <div class="links" style="margin-top:30px;"><Link href={LINKS.apple}>All {episodes.length} episodes on Apple Podcasts</Link></div>
+      )}
+    </section>
+
+    {SHOW_POSTS && posts.length > 0 && (
+      <section class="section">
+        <h2>Posts</h2>
+        <p class="lede">Notes from the build, written the evening it happened. Longer posts will land here too.</p>
+        <div class="rows" style="margin-top:30px;">
+          {posts.map((p) => (
+            <div class="row">
+              <div class="row-head">
+                <a class="row-title" href={`/writing/${p.slug}/`}><span class="t">{p.title}</span><Icon kind="arrow" size={13} /></a>
+                <span class="row-date">{p.date}</span>
+              </div>
+              <p class="row-text">{p.excerpt}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <Touch primary={null} />
+  </article>
+</Base>

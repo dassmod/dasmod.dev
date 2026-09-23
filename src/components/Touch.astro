@@ -1,0 +1,14 @@
+---
+import Link from './Link.astro';
+import { LINKS } from '../data/site.js';
+// primary: which link is the page's one action. Writing passes none, because its action is Listen.
+const { primary = 'Email' } = Astro.props;
+const items = [['Email', LINKS.email], ['GitHub', LINKS.github], ['LinkedIn', LINKS.linkedin], ['X', LINKS.x]];
+---
+<section class="section" id="contact">
+  <h2>Get in touch</h2>
+  <p class="lede">Work, an idea, or a correction to something I said on the show. This is where to find me, and I reply.</p>
+  <div class="links">
+    {items.map(([name, href]) => <Link href={href} action={name === primary}>{name}</Link>)}
+  </div>
+</section>

@@ -1,0 +1,462 @@
+/* dasmod.dev
+   Two modes, light and dark. The neon has four jobs and nothing else:
+     here     the page you are on (page number chip, current page in the menu)
+     now      the newest thing (live square, "current", "right now")
+     point    the one word the site is about ("verifiable")
+     do this  the one action a page asks for
+   On dark, the neon is the text colour. On light, neon text cannot be read,
+   so running words get a swipe under them and tiny labels get a filled chip. */
+
+:root {
+  --neon: #EAFF3D;
+  --sans: 'Geist Variable', 'Geist', system-ui, -apple-system, sans-serif;
+  --mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --edge: 29px;
+  --col: 696px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+
+  --ground-light: radial-gradient(58% 52% at 82% 10%, rgba(255, 255, 252, .62) 0%, rgba(255, 255, 252, 0) 70%),
+                  linear-gradient(118deg, #EDEDF0 0%, #F3EEE6 46%, #E9D5B6 100%);
+  --ground-dark: radial-gradient(58% 52% at 18% 6%, rgba(175, 180, 195, .16) 0%, rgba(175, 180, 195, 0) 70%),
+                 linear-gradient(118deg, #3F4459 0%, #31364A 46%, #1E2434 100%);
+
+  color-scheme: light;
+  --ink: #211F1C;
+  --mid: rgba(33, 31, 28, .66);
+  --faint: rgba(33, 31, 28, .48);
+  --hair: rgba(33, 31, 28, .15);
+  --ground: radial-gradient(58% 52% at 82% 10%, rgba(255, 255, 252, .62) 0%, rgba(255, 255, 252, 0) 70%),
+            linear-gradient(118deg, #EDEDF0 0%, #F3EEE6 46%, #E9D5B6 100%);
+  --ground-solid: #F0EBE3;
+  --frost: linear-gradient(118deg, rgba(240, 240, 242, .94) 0%, rgba(242, 241, 238, .93) 50%, rgba(246, 241, 232, .93) 100%);
+  --header-fade: rgba(240, 237, 232, .86);
+  --square-edge: inset 0 0 0 1px #211F1C;
+  --code-bg: rgba(33, 31, 28, .07);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #F1EEE8;
+  --mid: rgba(241, 238, 232, .72);
+  --faint: rgba(241, 238, 232, .50);
+  --hair: rgba(241, 238, 232, .17);
+  --ground: radial-gradient(58% 52% at 18% 6%, rgba(175, 180, 195, .16) 0%, rgba(175, 180, 195, 0) 70%),
+            linear-gradient(118deg, #3F4459 0%, #31364A 46%, #1E2434 100%);
+  --ground-solid: #2E3345;
+  --frost: linear-gradient(118deg, rgba(58, 63, 83, .95) 0%, rgba(46, 51, 70, .95) 50%, rgba(32, 38, 54, .95) 100%);
+  --header-fade: rgba(46, 51, 69, .88);
+  --square-edge: none;
+  --code-bg: rgba(241, 238, 232, .09);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--ground-solid);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The ground stays still while the page scrolls over it. The two layers
+   cross-fade, so a change of mode reads as one movement. */
+.ground { position: fixed; inset: 0; z-index: -1; }
+.ground span { position: absolute; inset: 0; transition: opacity .5s ease; }
+.ground-light { background: var(--ground-light); }
+.ground-dark { background: var(--ground-dark); opacity: 0; }
+:root[data-theme="dark"] .ground-light { opacity: 0; }
+:root[data-theme="dark"] .ground-dark { opacity: 1; }
+
+/* Every colour cross-fades, but only while the mode is changing. */
+:root.theming *, :root.theming *::before, :root.theming *::after {
+  transition: color .4s ease, background-color .4s ease, border-color .4s ease, box-shadow .4s ease, opacity .4s ease !important;
+}
+
+/* A neon wash over the whole page at the moment the mode changes. */
+.flash {
+  position: fixed; inset: 0; z-index: 40; pointer-events: none;
+  background: var(--neon); opacity: 0;
+}
+:root[data-neon="more"] .flash.is-on { animation: flash .46s ease-out; }
+@keyframes flash { 0% { opacity: 0; } 35% { opacity: .13; } 100% { opacity: 0; } }
+
+/* How far down the page you are. */
+.progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 25;
+  background: var(--neon); transform: scaleX(0); transform-origin: 0 50%;
+  opacity: 0; transition: opacity .3s ease;
+}
+:root[data-neon="more"] .scrolled .progress { opacity: 1; }
+
+a { color: inherit; text-decoration: none; }
+p { text-wrap: pretty; margin: 0; }
+h1, h2, h3 { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+
+::selection { background: var(--neon); color: #211F1C; }
+
+.skip {
+  position: absolute; left: var(--edge); top: -60px; z-index: 50;
+  font-family: var(--mono); font-size: 13px; padding: 4px 8px; background: var(--neon); color: #211F1C;
+}
+.skip:focus { top: 8px; }
+
+.icon { display: inline-block; flex: none; vertical-align: middle; }
+
+/* ------------------------------------------------------------------ neon */
+
+.hl { color: var(--neon); }
+:root:not([data-theme="dark"]) .hl {
+  color: inherit;
+  background-image: linear-gradient(transparent 60%, var(--neon) 60%, var(--neon) 94%, transparent 94%);
+  padding: 0 .06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.chip { color: var(--neon); }
+:root:not([data-theme="dark"]) .chip { background: var(--neon); color: #211F1C; padding: 1px 3px; margin: 0 -3px; }
+
+.mark { color: var(--neon); }
+:root:not([data-theme="dark"]) .mark {
+  color: inherit;
+  background: var(--neon);
+  padding: 0 .14em;
+  margin: 0 -.02em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.sq {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  background: var(--neon);
+  box-shadow: var(--square-edge);
+}
+
+/* --------------------------------------------------------------- header */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  height: 72px;
+  padding: 0 var(--edge);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -18px 0;
+  z-index: -1;
+  background: linear-gradient(var(--header-fade) 40%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+  mask-image: linear-gradient(#000 55%, transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.scrolled .site-header::before { opacity: 1; }
+.menu-open .site-header::before { opacity: 0; }
+
+.brand { font-weight: 600; font-size: 23px; line-height: 28px; letter-spacing: -.45px; white-space: nowrap; }
+.brand .dot { color: var(--ink); }
+:root[data-theme="dark"] .brand .dot { color: var(--neon); }
+
+.header-actions { display: flex; gap: 30px; align-items: center; font-family: var(--mono); font-size: 15px; }
+.header-actions button { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; }
+.header-actions button:hover .btn-text { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+.open-label, .close-label { display: inline-flex; align-items: center; gap: 8px; }
+.close-label, .menu-open .open-label { display: none; }
+.menu-open .close-label { display: inline-flex; }
+
+/* ----------------------------------------------------------------- menu */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  background: var(--frost);
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, backdrop-filter .4s ease, -webkit-backdrop-filter .4s ease, visibility 0s linear .3s;
+  overflow-y: auto;
+}
+.menu-open .menu {
+  opacity: 1;
+  visibility: visible;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  transition: opacity .28s ease, backdrop-filter .45s ease, -webkit-backdrop-filter .45s ease;
+}
+.menu-open { overflow: hidden; }
+
+/* The items arrive one after another, and leave together. */
+.menu-nav li, .menu-contact, .menu-meta {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .3s ease, transform .5s var(--ease);
+}
+.menu-open .menu-nav li, .menu-open .menu-contact, .menu-open .menu-meta { opacity: 1; transform: none; }
+.menu-open .menu-nav li:nth-child(1) { transition-delay: .06s; }
+.menu-open .menu-nav li:nth-child(2) { transition-delay: .11s; }
+.menu-open .menu-nav li:nth-child(3) { transition-delay: .16s; }
+.menu-open .menu-nav li:nth-child(4) { transition-delay: .21s; }
+.menu-open .menu-nav li:nth-child(5) { transition-delay: .26s; }
+.menu-open .menu-contact { transition-delay: .2s; }
+.menu-open .menu-meta { transition-delay: .3s; }
+
+/* A neon line drawn across the top as the menu opens. */
+.menu-sweep {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--neon); transform: scaleX(0); transform-origin: 0 50%;
+  opacity: 0;
+}
+:root[data-neon="more"] .menu-open .menu-sweep { opacity: 1; transform: scaleX(1); transition: transform .55s var(--ease); }
+
+.menu-inner {
+  width: 663px;
+  margin: 0 auto;
+  padding: 218px 0 120px;
+  display: grid;
+  grid-template-columns: 243px 420px;
+}
+
+.menu-nav { list-style: none; margin: 0; padding: 0; }
+.menu-nav li + li { margin-top: 25px; }
+.menu-title {
+  display: flex; align-items: center; gap: 12px; margin-top: 2px;
+  font-weight: 600; font-size: 27px; line-height: 32px; letter-spacing: -.35px;
+}
+.menu-nav a:hover .menu-word { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px; }
+.menu-new { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--mid); }
+
+.menu-contact { padding-top: 168px; }
+.menu-contact p { margin-top: 14px; font-size: 16px; line-height: 23px; }
+
+.menu-meta { position: fixed; left: var(--edge); bottom: 34px; }
+
+/* ----------------------------------------------------------- primitives */
+
+.num { font-family: var(--mono); font-size: 10px; line-height: 15px; color: var(--faint); }
+
+.meta-value { font-family: var(--mono); font-size: 15px; line-height: 22px; margin-top: 3px; }
+
+.alink {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-family: var(--mono); font-size: 15px; color: var(--mid);
+  transition: color .15s ease;
+}
+.alink:hover { color: var(--ink); }
+.alink:hover .icon, .row-title:hover .icon, .item-title:hover .icon { transform: translate(1px, -1px); }
+.icon { transition: transform .15s ease; }
+
+.alink.action { color: var(--ink); }
+:root[data-theme="dark"] .alink.action { color: var(--neon); }
+
+.links { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 18px; }
+
+/* ---------------------------------------------------------------- pages */
+
+.page {
+  width: 100%;
+  max-width: calc(var(--col) + 2 * var(--edge));
+  margin: 0 auto;
+  padding: 120px var(--edge) 140px;
+}
+
+.page-title { font-weight: 600; font-size: 35px; line-height: 40px; letter-spacing: -.35px; margin-top: 3px; }
+.lede { margin-top: 12px; max-width: 446px; }
+
+.section { margin-top: 96px; }
+.section h2 { font-weight: 600; font-size: 25px; line-height: 30px; letter-spacing: -.3px; }
+
+.rows { margin-top: 34px; }
+.row + .row { margin-top: 30px; }
+.row-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--hair);
+}
+.row-title { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; min-width: 0; }
+.row-date { font-family: var(--mono); font-size: 15px; color: var(--mid); white-space: nowrap; }
+.row-text { margin-top: 14px; max-width: 470px; font-size: 14.5px; line-height: 21px; color: var(--mid); }
+.row-text a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--hair); text-underline-offset: 3px; }
+.row-text a:hover { text-decoration-color: var(--ink); }
+.row-extra { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.row-extra .alink { font-size: 13px; }
+
+a.row-title:hover .t, a.item-title:hover .t { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px;
+  margin-top: 36px;
+}
+.item-title {
+  display: flex; align-items: center; gap: 4px; font-weight: 600;
+  padding-bottom: 10px; border-bottom: 1px solid var(--hair);
+}
+.item-text { margin-top: 14px; font-size: 14.5px; line-height: 21px; color: var(--mid); }
+
+/* ---------------------------------------------------------------- about */
+
+.intro { display: flex; justify-content: space-between; gap: 40px; margin-top: 54px; }
+.intro-text { max-width: 420px; }
+.intro-text:only-child { max-width: 540px; }
+.intro-text p { font-size: 20.5px; line-height: 27px; letter-spacing: -.15px; }
+.intro-text p + p { margin-top: 22px; }
+.portrait { width: 212px; height: 212px; border-radius: 6px; object-fit: cover; flex: none; }
+
+/* ----------------------------------------------------------------- work */
+
+.job { margin-top: 48px; }
+.job-head, .job-body { display: grid; grid-template-columns: 336px 360px; }
+.job-head { align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--hair); }
+.job-body { margin-top: 16px; align-items: start; }
+.job-role { padding-right: 24px; font-weight: 600; font-size: 14.5px; line-height: 21px; }
+.job-text p { font-size: 14.5px; line-height: 21px; color: var(--mid); }
+.job-text p + p { margin-top: 16px; }
+
+/* -------------------------------------------------------------- commits */
+
+.commits { margin-top: 30px; list-style: none; padding: 0; }
+.commit {
+  display: grid; grid-template-columns: 104px 190px minmax(0, 1fr); gap: 0 12px; align-items: baseline;
+  padding: 10px 0; border-bottom: 1px solid var(--hair);
+  font-size: 14.5px; line-height: 21px;
+}
+.commit-date, .commit-repo { font-family: var(--mono); font-size: 13px; color: var(--faint); }
+.commit-repo { color: var(--mid); }
+.commit a { min-width: 0; overflow-wrap: anywhere; }
+.commit a:hover .t { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.commit a .icon { margin-left: 4px; vertical-align: -1px; }
+
+/* ----------------------------------------------------------------- post */
+
+.post-date { margin-top: 12px; font-family: var(--mono); font-size: 15px; color: var(--mid); }
+.prose { margin-top: 48px; max-width: 560px; }
+.prose p { font-size: 17px; line-height: 27px; }
+.prose p + p { margin-top: 18px; }
+.prose code { font-family: var(--mono); font-size: .86em; padding: 1px 4px; border-radius: 3px; background: var(--code-bg); }
+.back { margin-bottom: 28px; }
+
+/* ----------------------------------------------------------------- home */
+
+.home-page { height: 100dvh; overflow: hidden; }
+.home { position: relative; height: 100dvh; }
+.hero { position: absolute; left: var(--edge); top: 94px; max-width: 640px; padding-right: var(--edge); }
+.hero p { font-size: 26px; line-height: 34px; letter-spacing: -.2px; text-wrap: balance; }
+.corner { position: absolute; bottom: 34px; }
+.corner.left { left: var(--edge); }
+.corner.right { right: var(--edge); }
+.corner .meta-value { display: flex; align-items: center; }
+.rule { display: inline-block; width: 86px; height: 1px; background: var(--hair); margin: 0 14px; }
+.clock { font-variant-numeric: tabular-nums; }
+.now-link { display: inline-flex; align-items: center; gap: 10px; }
+.now-link:hover .t { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+/* ---------------------------------------------------------------- phone */
+
+@media (max-width: 760px) {
+  :root { --edge: 16px; }
+
+  .brand { font-size: 19px; }
+  .header-actions { gap: 20px; font-size: 14px; }
+  .theme-toggle .btn-text { display: none; }
+
+  .menu-inner { width: auto; padding: 116px var(--edge) 120px; grid-template-columns: 1fr; }
+  .menu-contact { padding-top: 56px; }
+  .menu-meta { position: static; margin: 56px var(--edge) 0; padding-bottom: 40px; }
+
+  .page { padding-top: 104px; }
+  .section { margin-top: 72px; }
+  .grid { grid-template-columns: 1fr; gap: 28px; }
+  .intro { flex-direction: column-reverse; gap: 28px; margin-top: 40px; }
+  .intro-text p { font-size: 19px; line-height: 26px; }
+  .portrait { width: 132px; height: 132px; }
+  .job-head, .job-body { grid-template-columns: 1fr; }
+  .job-head { gap: 2px; }
+  .job-body { gap: 10px; }
+  .row-head { flex-wrap: wrap; gap: 2px 16px; }
+  .commit { grid-template-columns: auto minmax(0, 1fr); gap: 2px 12px; }
+  .commit a { grid-column: 1 / -1; }
+
+  .hero { top: 88px; }
+  .hero p { font-size: 23px; line-height: 30px; }
+  .corner.right { left: var(--edge); right: auto; bottom: 34px; max-width: calc(100% - 2 * var(--edge)); }
+  .corner.left { bottom: 106px; }
+  .corner.right .meta-value, .now-link { max-width: 100%; min-width: 0; }
+  .now-link .t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rule { width: 36px; margin: 0 12px; }
+}
+
+/* A short screen still has to reach the corners. */
+@media (max-height: 540px) {
+  .home-page { height: auto; overflow: auto; }
+  .home { min-height: 540px; }
+}
+
+/* ----------------------------------------------------- more neon (option) */
+/* Everything below only applies with data-neon="more". The neon keeps its four
+   jobs, and takes on a fifth: it is the colour of feedback and of movement. */
+
+/* Hover feedback: a neon underline on light, neon text on dark. */
+:root[data-neon="more"] .alink:hover,
+:root[data-neon="more"] .header-actions button:hover .btn-text {
+  text-decoration: underline;
+  text-decoration-color: var(--neon);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+:root[data-neon="more"][data-theme="dark"] .alink:hover { color: var(--neon); }
+:root[data-neon="more"][data-theme="dark"] .theme-toggle .icon,
+:root[data-neon="more"][data-theme="dark"] .menu-toggle .icon { color: var(--neon); }
+:root[data-neon="more"][data-theme="dark"] :focus-visible { outline-color: var(--neon); outline-width: 2px; }
+
+/* The hairline of the row you point at. */
+:root[data-neon="more"] .row-head:has(a:hover),
+:root[data-neon="more"] .job-head:has(a:hover),
+:root[data-neon="more"] a.item-title:hover,
+:root[data-neon="more"] .commit:hover { border-color: var(--neon); }
+
+/* Where a section starts. */
+:root[data-neon="more"] .section > h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  margin-right: 12px;
+  vertical-align: 2px;
+  background: var(--neon);
+  box-shadow: var(--square-edge);
+}
+
+/* The newest thing breathes. */
+:root[data-neon="more"] .sq { animation: pulse 2.6s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+/* The page arrives. */
+:root[data-neon="more"] main { animation: rise .55s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .menu-nav li, .menu-contact, .menu-meta { opacity: 1; transform: none; }
+}

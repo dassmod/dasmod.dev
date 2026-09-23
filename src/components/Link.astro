@@ -1,0 +1,9 @@
+---
+// A mono link with an arrow. `action` marks the one thing a page asks the visitor to do.
+import Icon from './Icon.astro';
+const { href, action = false } = Astro.props;
+const external = /^(https?:|mailto:)/.test(href);
+---
+<a class:list={['alink', { action }]} href={href} {...(external && !href.startsWith('mailto:') ? { target: '_blank', rel: 'noopener' } : {})}>
+  {action ? <span class="hl"><slot /></span> : <slot />}<Icon kind="arrow" size={13} />
+</a>

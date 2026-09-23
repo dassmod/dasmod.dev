@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { latestEpisode } from '../lib/live.js';
+import { PLACE } from '../data/site.js';
+
+// (Now) is the newest episode, and it points at the long-read when there is one.
+const now = latestEpisode && {
+  text: `Plain Strata, ${latestEpisode.title}`,
+  href: latestEpisode.longread || latestEpisode.url,
+};
+---
+<Base current="home" home>
+  <div class="home">
+    <div class="hero">
+      <p>Solution Engineer. I ship AI agents in production and I am learning to make their runs <span class="mark">verifiable</span>.</p>
+    </div>
+
+    <div class="corner left">
+      <div class="num">(Based in)</div>
+      <div class="meta-value">{PLACE.city}<span class="rule"></span><span class="clock" data-clock={PLACE.zone}>--:--:--</span></div>
+    </div>
+
+    {now && (
+      <div class="corner right">
+        <div class="num"><span class="chip">(Now)</span></div>
+        <div class="meta-value">
+          <a class="now-link" href={now.href} target="_blank" rel="noopener">
+            <span class="sq"></span><span class="t">{now.text}</span><Icon kind="arrow" size={13} />
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <script is:inline>
+    (function () {
+      var el = document.querySelector('[data-clock]');
+      var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: el.dataset.clock, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      function tick() { el.textContent = fmt.format(new Date()); }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</Base>

@@ -1,0 +1,62 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Touch from '../components/Touch.astro';
+import { STORY, EXPERTISE, BACKGROUND } from '../data/site.js';
+
+// Drop a square photo at public/portrait.jpg and it appears next to the intro.
+const hasPortrait = existsSync(join(process.cwd(), 'public', 'portrait.jpg'));
+---
+<Base title="About me" current="about">
+  <article class="page">
+    <PageHead num="02" title="About me" intro="Who I am, where the interest in decentralized AI actually comes from, and what I do well." />
+
+    <div class="intro">
+      <div class="intro-text">
+        <p>I am Dastan, a solution engineer at Newo.ai. I build AI voice agents that run in production.</p>
+        <p>I am going deeper into the part of the field where you do not have to take the machine's word for it. I want to make agent runs <span class="mark">verifiable</span>.</p>
+      </div>
+      {hasPortrait && <img class="portrait" src="/portrait.jpg" alt="Dastan Modubash" width="212" height="212" />}
+    </div>
+
+    <section class="section">
+      <h2>My story</h2>
+      <p class="lede">Two things blew me away, years apart. The thing underneath both was the same: nobody holds the off switch alone.</p>
+      <div class="rows">
+        {STORY.map((s) => (
+          <div class="row">
+            <div class="row-head"><span class="row-title">{s.title}</span><span class="row-date">{s.when}</span></div>
+            <p class="row-text" set:html={s.html} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What I do well</h2>
+      <p class="lede">Where I have built real depth, in production, with people depending on it.</p>
+      <div class="grid">
+        {EXPERTISE.map(([title, text]) => (
+          <div><div class="item-title">{title}</div><p class="item-text">{text}</p></div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Background</h2>
+      <p class="lede">The facts behind the story.</p>
+      <div class="rows">
+        {BACKGROUND.map((b) => (
+          <div class="row">
+            <div class="row-head"><span class="row-title">{b.title}</span><span class="row-date">{b.when}</span></div>
+            <p class="row-text">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Touch />
+  </article>
+</Base>
