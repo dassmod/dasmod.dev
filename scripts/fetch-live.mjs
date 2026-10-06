@@ -14,7 +14,7 @@ const NEWSLETTER_RSS = 'https://buttondown.com/plainstrata/rss';
 const REPOS = ['dassmod/proof-of-agent-run', 'dassmod/smart-repetition-agent'];
 
 async function get(url, headers = {}) {
-  const res = await fetch(url, { headers: { 'User-Agent': 'dasmod.dev build', ...headers }, signal: AbortSignal.timeout(20000) });
+  const res = await fetch(url, { headers: { 'User-Agent': 'dasmod.xyz build', ...headers }, signal: AbortSignal.timeout(20000) });
   if (!res.ok) throw new Error(`${res.status} from ${new URL(url).host}`);
   return res;
 }
