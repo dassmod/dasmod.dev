@@ -1,4 +1,4 @@
-# dasmod.dev
+# dasmod.xyz
 
 The personal site of Dastan Modubash. Astro, static, light and dark modes.
 
