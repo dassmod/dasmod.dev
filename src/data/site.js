@@ -102,12 +102,19 @@ export const WORK = [
 
 export const PROJECTS = [
   {
+    title: 'auditable-front-desk',
+    repo: 'auditable-front-desk',
+    href: 'https://github.com/dassmod/auditable-front-desk',
+    status: 'public',
+    live: true,
+    text: 'A receptionist agent for a fictional clinic, where every booking leaves a record a stranger can re-check. The model proposes, plain-code guards decide, and every decision is replayed afterwards. It runs as a text agent; a voice, a phone line and a backend on Bittensor subnets are the next phases.',
+  },
+  {
     title: 'proof-of-agent-run',
     repo: 'proof-of-agent-run',
     href: 'https://github.com/dassmod/proof-of-agent-run',
-    status: 'building',
-    live: true,
-    text: 'A replay engine for AI agent runs. It re-derives the steps a machine can re-derive and reports match, divergence, or could not check. The third outcome is the point: a validator that cannot tell a lie from a blind spot is not a validator.',
+    status: 'public',
+    text: 'The replay engine under auditable-front-desk. It re-derives the steps a machine can re-derive and reports match, divergence, or could not check. The third outcome is the point: a validator that cannot tell a lie from a blind spot is not a validator.',
   },
   {
     title: 'smart-repetition-agent',
