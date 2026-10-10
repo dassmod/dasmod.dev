@@ -55,7 +55,7 @@ export const EXPERTISE = [
 
 export const BACKGROUND = [
   { title: 'Middle East Technical University', when: '2018', text: "Bachelor of Arts in City and Regional Planning, Faculty of Architecture, Ankara." },
-  { title: 'University of Manchester', when: '2015', text: 'Erasmus exchange programme.' },
+  { title: 'University of Manchester', when: '2014 to 2015', text: 'Erasmus exchange programme.' },
   { title: 'Languages', when: '', text: 'Kyrgyz is my native language. Russian and English at C2, and English is the language I work in. Turkish at C1.' },
   { title: 'Based in', when: 'UTC+4', text: 'Tbilisi, Georgia, at the moment. Remote, and used to working across time zones.' },
 ];
