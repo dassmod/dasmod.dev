@@ -48,13 +48,13 @@ export const EXPERTISE = [
   ['AI voice agents in production', 'I design, ship and debug voice and chat agents from zero. Intent systems, scenario logic, telephony, multi-language routing.'],
   ['Production integrations', 'Python integrations with booking systems, CRMs and webhooks. The payload and encoding bugs that only appear in production.'],
   ['Incident command', 'Detection, code, deploy, testing, stakeholders and resolution, end to end, including silent failures from an upstream API change.'],
-  ['AI tooling for teams', 'An investigation and fix pipeline the whole team runs, with one human approval gate, sandboxed test loops and enforced data-safety rules.'],
+  ['AI tooling for teams', 'An AI-assisted investigation and fix workflow for my team, with one human approval gate, sandboxed test loops and enforced data-safety rules.'],
   ['Contracts and the oracle pattern', 'Solidity and Foundry on testnet. EIP-712 attestations that settle proofs on Sepolia: compute off chain, verify on chain.'],
   ['Explaining hard things', 'A show twice a week that takes one concept down to the ground and builds it back up, for people who are allergic to hype.'],
 ];
 
 export const BACKGROUND = [
-  { title: 'Middle East Technical University', when: '2018', text: "Bachelor's degree in City and Regional Planning, Faculty of Architecture, Ankara." },
+  { title: 'Middle East Technical University', when: '2018', text: "Bachelor of Arts in City and Regional Planning, Faculty of Architecture, Ankara." },
   { title: 'University of Manchester', when: '2015', text: 'Erasmus exchange programme.' },
   { title: 'Languages', when: '', text: 'Kyrgyz is my native language. Russian and English at C2, and English is the language I work in. Turkish at C1.' },
   { title: 'Based in', when: 'UTC+4', text: 'Tbilisi, Georgia, at the moment. Remote, and used to working across time zones.' },
@@ -68,14 +68,14 @@ export const WORK = [
     roles: ['Solution Engineer'],
     live: true,
     text: [
-      'I work on an AI voice agent platform. I own one vertical of production agents, write code on the core platform, and run incident response end to end.',
-      'I built the investigation and fix pipeline the whole team now runs, and was acting team lead for a stretch.',
+      'I build and run AI voice agents on an AI voice agent platform, and the booking integrations behind them. I owned the dental vertical for seven months, write code on the core platform, and run incidents end to end.',
+      'I built an AI-assisted investigation and fix workflow for my team, and was acting team lead for a stretch.',
     ],
   },
   {
     company: 'Irbis HVAC',
-    dates: 'Dec 2024 - Dec 2025',
-    roles: ['Platform Integration and', 'Automation Lead'],
+    dates: 'May 2025 - Dec 2025',
+    roles: ['AI Integration and', 'Automation Specialist'],
     text: [
       'I built one communications pipeline across eleven lead sources: intake, routing, AI attribution, automated follow-up and an after-hours voice line.',
       'I led the AI rollout across the business and migrated the website with a zero-downtime cutover.',
@@ -119,7 +119,7 @@ export const PROJECTS = [
   {
     title: 'Agent companions',
     status: 'private, daily',
-    text: 'Five agent systems that run my days, each shaped around me rather than an average user. Built on the Claude Agent SDK, with scheduled tasks and sub-agents.',
+    text: 'Seven agent systems that run my days, each shaped around me rather than an average user. Built on the Claude Agent SDK, with scheduled tasks and sub-agents.',
   },
 ];
 
