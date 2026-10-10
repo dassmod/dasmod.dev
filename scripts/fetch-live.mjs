@@ -11,7 +11,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 const OUT = new URL('../src/data/live.json', import.meta.url);
 const APPLE_SHOW_ID = '6783455764';
 const NEWSLETTER_RSS = 'https://buttondown.com/plainstrata/rss';
-const REPOS = ['dassmod/proof-of-agent-run', 'dassmod/smart-repetition-agent'];
+const REPOS = ['dassmod/auditable-front-desk', 'dassmod/proof-of-agent-run', 'dassmod/smart-repetition-agent'];
 
 async function get(url, headers = {}) {
   const res = await fetch(url, { headers: { 'User-Agent': 'dasmod.xyz build', ...headers }, signal: AbortSignal.timeout(20000) });
