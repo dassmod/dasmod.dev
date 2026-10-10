@@ -120,7 +120,7 @@ export const PROJECTS = [
     title: 'smart-repetition-agent',
     repo: 'smart-repetition-agent',
     href: 'https://github.com/dassmod/smart-repetition-agent',
-    status: 'shipped 2026-07-06',
+    status: 'public',
     text: 'A tutor that reads my notes, asks real questions, adapts at runtime, and settles a signed proof of what I studied on Ethereum Sepolia. Compute off chain, verify on chain.',
   },
   {
