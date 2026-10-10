@@ -17,7 +17,7 @@ export const LINKS = {
 };
 
 export const DESCRIPTION =
-  'Dastan Modubash, solution engineer. I ship AI agents in production and I am learning to make their runs verifiable.';
+  'Dastan Modubash, solution engineer. I ship AI agents in production and build the tools that make their runs verifiable.';
 
 const external = (href, text) => `<a href="${href}" target="_blank" rel="noopener">${text}</a>`;
 
